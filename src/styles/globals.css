@@ -1,27 +1,97 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+
+
+.wrapper {
+  position: relative;
+  font-size: 1.5rem;
+  border-radius: 9999px;
+  overflow: hidden;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+.border {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  -webkit-mask-composite: xor;
+  -webkit-mask: linear-gradient(#7929c9 0 0) content-box, linear-gradient(#7929c9 0 0);
+}
+
+.lighthouse {
+  background-image: conic-gradient(from 0 at center,rgb(121, 41, 201) 0deg,rgba(17, 17, 17, 1) 10% ,rgba(17, 17, 17, 1) 90%,rgb(121, 40, 202) 360deg);
+  position: absolute;
+  inset: 0;
+  top: 50%;
+  translate: 0% -50%;
+  transform-origin: center;
+  aspect-ratio: 1/1;
+  height: auto;
+  animation: lighthouse 8s linear infinite;
+}
+@keyframes lighthouse {
+  to {
+    rotate: 1turn;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.button {
+  cursor: pointer;
+  padding-inline: 4rem;
+  padding-block: 1rem;
+  /* border: 1px solid rgba(255,255,255,.1); */
+  border-radius: inherit;
+  position: relative;
+  background:  #161616;
+  /* transition: border-color .2s cubic-bezier(0.4, 0, 1,1); */
 }
+
+.button::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity .2s cubic-bezier(0.4, 0, 1,1);
+  background-image: linear-gradient( 360deg, #ffffff12, transparent 100%);
+}
+
+.button:hover {
+    border-color: rgba(255,255,255,.5);
+}
+
+.button:hover::after {
+  opacity: 1;
+}
+
+.button > span {
+  background: linear-gradient(180deg,rgba(255, 182, 255, 1).85%,rgba(179, 68, 255, 1) 100%);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* <BASIC STYLING> */
+main, body {
+  display: flex;
+  margin: 0;
+  flex-direction: column;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  height: 100dvh;
+  /* background: #0a0118; */
+  background: #161616;
+  color: white;
+  font-family: 'system-ui';
+}
+
+main {
+  height: auto;
+  position: relative;
+  width: 100%;
+}
+
+main > h1 {
+  position: absolute;
+  top: -100px;
+}
+/* </BASIC STYLING> */
